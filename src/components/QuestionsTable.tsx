@@ -33,6 +33,10 @@ const QuestionsTable = ({paginatedData, refreshSolved}: QuestionsTableProps ) =>
         setSolvedQuestions(updatedSolvedQuestions);
         refreshSolved();
     };
+    const onQuestionClick = (link: string) => {
+        const newWindow = window.open(link, "_blank", "noopener,noreferrer");
+        if (newWindow) newWindow.opener = null;
+    }
     return (
         <div className="rounded-lg mt-4">
             <h1 className="text-xl font-bold mb-4">Questions</h1>
@@ -69,6 +73,7 @@ const QuestionsTable = ({paginatedData, refreshSolved}: QuestionsTableProps ) =>
                                 </td>
                                 <td className="p-4">
                                     <a
+                                        onClick={()=>onQuestionClick(question["Leetcode Question Link"])}
                                         className="text-blue-600 cursor-pointer hover:text-blue-800 hover:underline font-medium transition-colors duration-150"
                                     >
                                         {question.Title}
