@@ -58,7 +58,7 @@ const HomePage = () => {
         <div className="w-[90%] lg:w-[80%] md:w-[80%] mx-auto">
             <TotalSolved solvedQuestions={solvedQuestions}/>
             <TopBar resetAll={resetAll} setPage={setPage} searchTerm={searchTerm} setSearchTerm={setSearchTerm} setDebouncedSearchTerm={setDebouncedSearchTerm} difficulty={difficulty} setDifficulty={setDifficulty}/>
-            <CompaniesFilter companies={companies} propSetSelectedCompanies={setSelectedCompanies} selectedCompanies={selectedCompanies}/>
+            <CompaniesFilter companies={companies} propSetSelectedCompanies={setSelectedCompanies} selectedCompanies={selectedCompanies} setPage={setPage}/>
             <QuestionsTable refreshSolved={refreshSolved} paginatedData={paginatedData} />
             <Pagination itemsPerPage={itemsPerPage} setPage={setPage} page={page} setItemsPerPage={setItemsPerPage} totalPages={totalPages}/>
         </div>

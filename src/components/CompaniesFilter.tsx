@@ -2,11 +2,12 @@ import { X } from 'lucide-react';
 import { useState, useEffect } from 'react';
 interface CompaniesFilterProps {
     propSetSelectedCompanies: React.Dispatch<React.SetStateAction<string[]>>;
+    setPage: React.Dispatch<React.SetStateAction<number>>;
     selectedCompanies: string[];
     companies: string[];
 }
 
-const CompaniesFilter = ({propSetSelectedCompanies, selectedCompanies, companies}: CompaniesFilterProps ) => {
+const CompaniesFilter = ({propSetSelectedCompanies, selectedCompanies, companies, setPage}: CompaniesFilterProps ) => {
     const [currentPage, setCurrentPage] = useState(1)
     const [searchTerm, setSearchTerm] = useState("")
     const [companiesLocal, setCompaniesLocal] = useState<string[]>(companies)
@@ -20,6 +21,7 @@ const CompaniesFilter = ({propSetSelectedCompanies, selectedCompanies, companies
         setCompaniesLocal(filteredCompanies);
         setTotalPages(Math.ceil(filteredCompanies.length / 25)); 
         setCurrentCompanies(filteredCompanies.slice(0, 25));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [debouncedSearchTerm]);
     
     useEffect(() => {
@@ -37,6 +39,7 @@ const CompaniesFilter = ({propSetSelectedCompanies, selectedCompanies, companies
         setCurrentCompanies(companiesLocal.slice(startIndex, endIndex));
     }
     const handleSelect = (companyName: string) => {
+        setPage(1)
         if(selectedCompanies.includes(companyName)){
             propSetSelectedCompanies(selectedCompanies.filter((company) => company !== companyName))
         }else{
